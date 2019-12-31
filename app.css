@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  position: relative;
+}
+
+#container, #firework {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+}
+
+#container {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#result {
+  text-align: center;
+  font-size: 70px;
+  color: blue;
+}
+
+#percent {
+  font-size: 30px;
+}
+
+#read {
+  color: #777;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+  #result {
+    color: yellow;
+  }
+}
