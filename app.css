@@ -15,6 +15,12 @@ html, body {
     font-size: 70px;
     color: blue;
 }
+#percent {
+    font-size: 30px;
+}
+#read {
+    color: #777;
+}
 @media (prefers-color-scheme: dark) {
     body {
         background-color: black;
