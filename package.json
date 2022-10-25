@@ -1,0 +1,13 @@
+{
+  "name": "countdown-nextyear",
+  "type": "module",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "typescript": "^4.5.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  }
+}

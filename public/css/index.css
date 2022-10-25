@@ -1,5 +1,7 @@
 html, body {
   height: 100%;
+
+  color-scheme: dark light;
 }
 
 body {
@@ -39,10 +41,6 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: black;
-    color: white;
-  }
   #result {
     color: yellow;
   }
