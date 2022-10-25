@@ -53,8 +53,8 @@ const Firework = (cv) => {
   let sparkles = []
 
   const resize = (w, h) => {
-    cv.width = cv2.width = w
-    cv.height = cv2.height = h
+    cv2.width = w
+    cv2.height = h
   }
 
   const spawn = () => {

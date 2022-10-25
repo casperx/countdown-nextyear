@@ -9,7 +9,7 @@ body {
   position: relative;
 }
 
-#container, #firework {
+#container, #overlay {
   width: 100%;
   height: 100%;
 

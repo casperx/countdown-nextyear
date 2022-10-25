@@ -1,17 +1,19 @@
-import fireworkFactory from './firework.js';
+import fireworkFactory from './firework.js'
+import snowFactory from './snow.js'
 
 const result = document.querySelector('#result')
 const percent = document.querySelector('#percent')
 
-const fireworkDisp = document.querySelector('#firework')
+const overlayCanvas = document.querySelector('#overlay')
 
-const firework = fireworkFactory(fireworkDisp)
+const firework = fireworkFactory(overlayCanvas)
+const snow = snowFactory(overlayCanvas)
 
 let sizeSync = () => {
-  firework.resize(
-    fireworkDisp.offsetWidth,
-    fireworkDisp.offsetHeight
-  )
+  overlayCanvas.width = overlayCanvas.offsetWidth
+  overlayCanvas.height = overlayCanvas.offsetHeight
+
+  firework.resize(overlayCanvas.offsetWidth, overlayCanvas.offsetHeight)
 }
 
 window.addEventListener('resize', sizeSync)
@@ -42,21 +44,32 @@ const refresh = () => {
   }
   else {
     const ratioComplete = (duration / yearDuration) * 100
-    const remainDate = new Date(remainDuration + timezoneOffset)
+    const remainDateObject = new Date(remainDuration + timezoneOffset)
 
-    result.textContent =
-      remainDate.getMonth() + ' month ' +
-      (remainDate.getDate() - 1) + ' day ' +
-      remainDate.getHours() + ' hour ' +
-      remainDate.getMinutes() + ' minute ' +
-      remainDate.getSeconds() + ' second'
+    const remainMonth = remainDateObject.getMonth()
+    const remainDate = remainDateObject.getDate() - 1
+    const remainHours = remainDateObject.getHours()
+    const remainMinutes = remainDateObject.getMinutes()
+    const remainSeconds = remainDateObject.getSeconds()
 
-    percent.textContent = 'That is, ' + currentYearDate.getFullYear() + ' is ' + ratioComplete.toFixed(6) + '% complete'
+    const currentFullYear = currentYearDate.getFullYear()
+    const currentRatio = ratioComplete.toFixed(6)
+
+    result.textContent = `${remainMonth} month ${remainDate} day ${remainHours} hour ${remainMinutes} minute ${remainSeconds} second`
+
+    percent.textContent = `That is, ${currentFullYear} is ${currentRatio}% complete`
+  }
+
+  if (nowDate.getMonth() === 9) {
+    if (Math.random() < 0.5)
+      snow.spawn()
+    snow.paint()
   }
 
   if (duration < 3e5 && Math.random() < 0.08)
     firework.spawn()
-  firework.paint()
+  if (duration < 4e5)
+    firework.paint()
 
   requestAnimationFrame(refresh)
 }
