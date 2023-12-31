@@ -22,19 +22,24 @@ window.addEventListener('resize', sizeSync)
 sizeSync()
 
 let timezoneOffset: number
+let leapYearOffset: number
 
 let currentYearDate: Date
 let nextYearDate: Date
 
 let yearDuration: number
 
+const isLeapYear = (year: number) => (year & 3) == 0 && (year % 25 != 0 || (year & 15) == 0)
+
 const update = () => {
   const nowDate = new Date()
 
+  const nowYear = nowDate.getFullYear()
   timezoneOffset = nowDate.getTimezoneOffset() * 6e4
+  leapYearOffset = isLeapYear(nowYear) ? 63072000000 : 0
 
-  currentYearDate = new Date(nowDate.getFullYear(), 0, 1, 0, 0, 0)
-  nextYearDate = new Date(nowDate.getFullYear() + 1, 0, 1, 0, 0, 0)
+  currentYearDate = new Date(nowYear, 0, 1, 0, 0, 0)
+  nextYearDate = new Date(nowYear + 1, 0, 1, 0, 0, 0)
 
   yearDuration = nextYearDate.valueOf() - currentYearDate.valueOf()
 }
@@ -49,7 +54,7 @@ const refresh = () => {
     update()
 
   else {
-    const remainDateObject = new Date(remainDuration + timezoneOffset)
+    const remainDateObject = new Date(remainDuration + leapYearOffset + timezoneOffset)
 
     const remainMonth = remainDateObject.getMonth()
     const remainDate = remainDateObject.getDate() - 1
