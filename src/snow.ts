@@ -1,4 +1,4 @@
-const rand = (mn: number, mx: number) => mn + Math.random() * (mx - mn)
+import {rand} from './util.js'
 
 const Flake = (h: number, x: number, c: string) => {
   let y = 0

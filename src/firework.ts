@@ -1,4 +1,4 @@
-const rand = (mn: number, mx: number) => mn + Math.random() * (mx - mn)
+import {rand} from './util.js'
 
 const fallRate = 0.07
 const disappearRate = 0.01
