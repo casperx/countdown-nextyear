@@ -32,7 +32,7 @@ let yearDuration: number
 const isLeapYear = (year: number) => (year & 3) == 0 && (year % 25 != 0 || (year & 15) == 0)
 
 const update = () => {
-  const nowDate = new Date()
+  const nowDate = new Date
 
   const nowYear = nowDate.getFullYear()
   timezoneOffset = nowDate.getTimezoneOffset() * 6e4
@@ -45,7 +45,7 @@ const update = () => {
 }
 
 const refresh = () => {
-  const nowDate = new Date()
+  const nowDate = new Date
 
   const duration = nowDate.valueOf() - currentYearDate.valueOf()
   const remainDuration = nextYearDate.valueOf() - nowDate.valueOf()
